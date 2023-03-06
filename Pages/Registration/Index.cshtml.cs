@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BankSystem.Models;
 using BankSystem.Pages.Auth;
+using BankSystem.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,15 +18,18 @@ namespace BankSystem.Pages.Registration
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IEmailSender _emailSender;
 
         public IndexModel(
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
-            ILogger<LoginModel> logger)
+            ILogger<LoginModel> logger,
+            IEmailSender emailSender)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
+            _emailSender = emailSender ?? throw new ArgumentNullException(nameof(emailSender));
         }
 
         [BindProperty]
@@ -84,10 +88,21 @@ namespace BankSystem.Pages.Registration
                 return Page();
             }
 
-            var confirmationToken = _userManager.GenerateEmailConfirmationTokenAsync(user);
+            _logger.LogInformation("User created a new account with password.");
 
-            
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
+            await _emailSender.SendAsync(
+                Input.Email,
+                "Confirm your email",
+                $"{code} is the OTP to confirm you registeration");
+
+            if (!_userManager.Options.SignIn.RequireConfirmedAccount)
+            {
+                await _signInManager.SignInAsync(user, isPersistent: false);
+            }
+
+            return Redirect("/user/setup");
         }
 
         public class InputModel

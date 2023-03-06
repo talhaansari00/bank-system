@@ -1,5 +1,6 @@
 using BankSystem.Data;
 using BankSystem.Models;
+using BankSystem.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -48,6 +49,9 @@ public class Program
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+            builder.Services.AddSingleton<IEmailSender, DummyEmailSender>();
 
             var app = builder.Build();
 

@@ -1,0 +1,54 @@
+﻿@page "/me/edit"
+@model BankSystem.Pages.Users.SetupModel;
+
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">User Setup</h3></div>
+                <div class="card-body">
+                    <form id="user-setup" method="post">
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.FirstName" class="form-control" autocomplete="first-name" aria-required="true" />
+                            <label asp-for="Input.FirstName" class="form-label"></label>
+                            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.LastName" class="form-control" autocomplete="last-name" aria-required="true" />
+                            <label asp-for="Input.LastName" class="form-label"></label>
+                            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.DateOfBirth" class="form-control" aria-required="true" />
+                            <label asp-for="Input.DateOfBirth" class="form-label"></label>
+                            <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.PAN" class="form-control" autocomplete="confirm-password" aria-required="true" />
+                            <label asp-for="Input.PAN" class="form-label"></label>
+                            <span asp-validation-for="Input.PAN" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.AadharNo" class="form-control" autocomplete="confirm-password" aria-required="true" />
+                            <label asp-for="Input.AadharNo" class=" form-label"></label>
+                            <span asp-validation-for="Input.AadharNo" class="text-danger"></span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                            <button id="setup-submit" type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -13,13 +13,7 @@
 	</ItemGroup>
 	<ItemGroup Condition="$(Configuration) == 'Debug'">
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.13" />
-		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.13" />
-	</ItemGroup>
-	<ItemGroup>
-	  <None Remove="Services\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Services\" />
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.12" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.14" />
 	</ItemGroup>
 </Project>
