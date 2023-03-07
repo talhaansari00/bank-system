@@ -63,6 +63,13 @@ public class Program
                 app.UseHsts();
             }
 
+#if DEBUG
+            // This creates a database when running in debug mode.
+            var scope = app.Services.CreateScope();
+            var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            dbContext.Database.EnsureCreated();
+#endif
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

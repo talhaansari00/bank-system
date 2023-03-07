@@ -12,7 +12,7 @@
 
         public TransactionType Type { get; set; }
 
-        public DateTime OccurredOn { get; set; }
+        public DateTime OccurredOn { get; set; } = DateTime.Now;
 
         public decimal Amount { get; set; }
 

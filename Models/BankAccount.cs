@@ -8,7 +8,7 @@
 
     public sealed class BankAccount
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; } = string.Empty;
 
         public AccountType AccountType { get; set; }
 

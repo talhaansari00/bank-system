@@ -9,4 +9,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public ApplicationDbContext(DbContextOptions options) : base(options)
     {
     }
+
+    public DbSet<Transaction> Transactions { get; set; }
+
+    public DbSet<BankAccount> Accounts { get; set; }
 }
