@@ -2,3 +2,26 @@
 @model BankSystem.Pages.Transactions.WithdrawModel
 @{
 }
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <img src="c:\users\ansar\onedrive\desktop\nabeela\bank-system-main\bank-system-main\images\logo.jpg" />
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Withdraw</h3></div>
+                <div class="card-body">
+                    <form id="account" method="post">
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.Amount" class="form-control" autocomplete="Amount" aria-required="true" />
+                            <label asp-for="Input.Amount" class="form-label"></label>
+                            <span asp-validation-for="Input.Amount" class="text-danger"></span>
+                        </div>
+                        <button id="login-submit" type="submit" class="btn btn-primary">Proceed</button>
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
